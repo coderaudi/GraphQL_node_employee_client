@@ -23,6 +23,7 @@ const schema = require('./schema/Schema');
 // the single end point for all the API calls
 app.use('/graphql' , graphqlHTTP({
     schema,  //  the graphql schema 
+    //
     graphiql : true // middleware to show the graphical view of query fire
 }))
 

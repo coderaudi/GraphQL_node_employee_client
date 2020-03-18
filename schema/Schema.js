@@ -65,7 +65,7 @@ const TimesheetType = new GraphQLObjectType({
 
         // author: {
         //     type: AuthorType,
-        //     resolve(parent, args){
+        //     resolve(parent, args ){
         //         return Author.findById(parent.authorId);
         //         //
         //     }
@@ -113,9 +113,9 @@ const RootQuery = new GraphQLObjectType({
         // get employeet timesheet
         timesheets: {
             type: new GraphQLList(TimesheetType),
-            // args : { id: { type: GraphQLID } }, timesheets
+            args : { id: { type: GraphQLID } , limit :{type :GraphQLInt} }, 
             resolve(parent, args) {
-                return Timesheet.find();
+                return Timesheet.find().limit(args.limit).pretty();
             }
         },
 
