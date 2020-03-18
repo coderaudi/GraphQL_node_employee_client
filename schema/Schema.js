@@ -113,9 +113,9 @@ const RootQuery = new GraphQLObjectType({
         // get employeet timesheet
         timesheets: {
             type: new GraphQLList(TimesheetType),
-            args : { id: { type: GraphQLID } , limit :{type :GraphQLInt} }, 
+            args : { id: { type: GraphQLID } ,skip :{type :GraphQLInt}, limit :{type :GraphQLInt} }, 
             resolve(parent, args) {
-                return Timesheet.find().limit(args.limit).pretty();
+                return Timesheet.find().skip(args.skip).limit(args.limit);
             }
         },
 
