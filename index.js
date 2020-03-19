@@ -21,12 +21,20 @@ const schema = require('./schema/Schema');
 
 // all the request with /graphql end point will be handover to the graphqlHTTP 
 // the single end point for all the API calls
-app.use('/graphql' , graphqlHTTP({
-    schema,  //  the graphql schema 
-    //
-    graphiql : true // middleware to show the graphical view of query fire
-}))
+// app.use('/graphql' , graphqlHTTP( (req) => {
+//     schema,  //  the graphql schema 
+//     context : req,
+//     graphiql : true,
+    
+// }))
 
+
+app.use('/graphql', graphqlHTTP((req) => ({
+    schema: schema,  // the graphql schema
+    context: req.body,
+    pretty: true,
+    graphiql: true  // middleware to show the graphical view of query fire
+  })));
 
 
 app.listen(4200, ()=>{
